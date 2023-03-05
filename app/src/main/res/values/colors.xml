@@ -16,6 +16,7 @@
     <color name="imageBackground">#D9D9D9</color>
     <color name="categoriesBackground">#7074DF</color>
     <color name="bellBackgrounImage">#C0DD81</color>
+    <color name="selectedTopicColor">#32368C</color>
 
 
 </resources>

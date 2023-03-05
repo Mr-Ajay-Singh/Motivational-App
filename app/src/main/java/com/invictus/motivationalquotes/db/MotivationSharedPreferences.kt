@@ -18,4 +18,5 @@ object MotivationSharedPreferences: CommonSharedPref() {
     var SELECTED_IMAGE: Int by intPref(0, key = "selected_image")
     var TEXT_SIZE: Int by intPref(16, key = "text_size")
     var TEXT_COLOR: Int by intPref(0, key = "text_color")
+    var SELECTED_TOPICS: String by stringPref("", key = "selected_topics")
 }

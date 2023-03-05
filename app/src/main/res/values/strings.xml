@@ -21,4 +21,6 @@
     <string name="font_setting">Font Setting</string>
     <string name="font_color">Font Color</string>
     <string name="font_size">Font size</string>
+    <string name="reminders_notification_channel_id">reminer_channel_id</string>
+    <string name="reminders_notification_channel_name">channel name</string>
 </resources>
