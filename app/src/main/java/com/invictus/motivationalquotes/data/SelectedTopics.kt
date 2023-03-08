@@ -8,6 +8,14 @@ enum class SelectedTopics(val value: String) {
     BREAKUP("Break up"),
     KARMA("Karma"),
     CONFIDENCE("Confidence"),
+    BEAUTY("Beauty"),
+    DREAMS("Dreams"),
+    FOCUS("Focus"),
+    LIFE("Life"),
+    LOVE("Love"),
+    MOTIVATION("Motivation"),
+    STAY_STRONG("Stay Strong"),
+    WISDOM("Wisdom"),
 }
 
 object SelectedTopicsList{

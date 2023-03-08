@@ -1,9 +1,6 @@
 package com.invictus.motivationalquotes.data
 
-import com.invictus.motivationalquotes.data.quotes.BreakupQuotes
-import com.invictus.motivationalquotes.data.quotes.ConfidenceQuotes
-import com.invictus.motivationalquotes.data.quotes.FriendshipQuotes
-import com.invictus.motivationalquotes.data.quotes.KarmaQuotes
+import com.invictus.motivationalquotes.data.quotes.*
 import timber.log.Timber
 
 object QuotesList {
@@ -21,9 +18,7 @@ object QuotesList {
 
         if(totalEmptyStrings == list.size){
             quoteList.clear()
-            SelectedTopics.values().forEach {
-                quoteList.addAll(getQuotesListByTitle(it.value))
-            }
+            quoteList.addAll(getQuotesListByTitle(SelectedTopics.MOTIVATION.value))
         }
 
         quoteList.removeIf{it.isEmpty()}
@@ -36,10 +31,18 @@ object QuotesList {
     private fun getQuotesListByTitle(str: String): List<String>{
 
         return when(str){
+            SelectedTopics.BEAUTY.value -> BeautyQuotes.getQuotes()
             SelectedTopics.BREAKUP.value -> BreakupQuotes.getQuotes()
             SelectedTopics.CONFIDENCE.value -> ConfidenceQuotes.getQuotes()
-            SelectedTopics.FRIENDSHIP .value -> FriendshipQuotes.getQuotes()
+            SelectedTopics.DREAMS.value -> DreamsQuotes.getQuotes()
+            SelectedTopics.FOCUS.value -> FocusQuotes.getQuotes()
+            SelectedTopics.FRIENDSHIP.value -> FriendshipQuotes.getQuotes()
             SelectedTopics.KARMA.value -> KarmaQuotes.getQuotes()
+            SelectedTopics.LIFE.value -> LifeQuotes.getQuotes()
+            SelectedTopics.LOVE.value -> LoveQuotes.getQuotes()
+            SelectedTopics.MOTIVATION.value -> MotivationQuotes.getQuotes()
+            SelectedTopics.STAY_STRONG.value -> StayStrongQuotes.getQuotes()
+            SelectedTopics.WISDOM.value -> WisdomQuotes.getQuotes()
             else -> arrayListOf<String>()
         }
 
