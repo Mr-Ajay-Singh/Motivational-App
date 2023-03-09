@@ -17,6 +17,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.core.content.ContextCompat
 import com.invictus.common.ui.theme.CommonApplicationTheme
 import com.invictus.motivationalquotes.R
+import com.invictus.motivationalquotes.db.MotivationSharedPreferences
 import com.invictus.motivationalquotes.ui.homeScreens.CategoriesSelectionPage
 import com.invictus.motivationalquotes.ui.homeScreens.HomeScreen
 import com.invictus.motivationalquotes.ui.homeScreens.SelectWallpaperPage
@@ -30,19 +31,31 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         createNotificationsChannels(this)
-        ReminderManager.startReminder(this)
+        makeNotification()
         setContent {
             CommonApplicationTheme {
                 HomePage()
             }
         }
     }
+
+    private fun makeNotification() {
+//        val timeList = arrayListOf("08:00","10:45","12:15","14:10","16:15","17:30","18:30","19:45","20:51","21:15","22:00",)
+//
+//        var requestNumber = ReminderManager.REMINDER_NOTIFICATION_REQUEST_CODE
+//        timeList.forEach{
+//            ReminderManager.startReminder(this,it,requestNumber++)
+//        }
+
+            ReminderManager.startReminder(this)
+    }
 }
 
 @Composable
 fun HomePage() {
 
-    val selectedPage = remember{ mutableStateOf(MainScreenIdentifier.HOME_PAGE) }
+    val selectedPage =
+        remember { mutableStateOf(if (MotivationSharedPreferences.FIRST_TIME_USER) MainScreenIdentifier.INTRO_PAGE2 else MainScreenIdentifier.HOME_PAGE) }
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -65,7 +78,7 @@ private fun createNotificationsChannels(context: Context) {
         val channel = NotificationChannel(
             context.getString(R.string.reminders_notification_channel_id),
             context.getString(R.string.reminders_notification_channel_name),
-            NotificationManager.IMPORTANCE_HIGH
+            NotificationManager.IMPORTANCE_DEFAULT
         )
         ContextCompat.getSystemService(context, NotificationManager::class.java)
             ?.createNotificationChannel(channel)

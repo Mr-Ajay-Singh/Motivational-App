@@ -13,8 +13,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.invictus.common.utils.UnitConverter.DP
-import com.invictus.motivationalquotes.ui.main.MainScreenIdentifier
 import com.invictus.motivationalquotes.R
+import com.invictus.motivationalquotes.ui.main.MainScreenIdentifier
 
 @Composable
 fun IntroPage2(selectedPage: MutableState<MainScreenIdentifier>) {
@@ -46,13 +46,13 @@ fun IntroPage2(selectedPage: MutableState<MainScreenIdentifier>) {
             }
 
             item{
-                TitleComponent(stringResource(id = R.string.daily_motivation_reminders))
+                TitleComponent(stringResource(id = R.string.intro_title))
 
                 Spacer(modifier = Modifier.height(30.DP))
             }
 
             item{
-                TitleDescriptionComponent(stringResource(id = R.string.daily_motivation_reminders))
+                TitleDescriptionComponent(stringResource(id = R.string.intro_desc))
 
             }
 

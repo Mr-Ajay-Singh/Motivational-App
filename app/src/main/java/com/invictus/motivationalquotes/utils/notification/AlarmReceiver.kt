@@ -8,7 +8,9 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.invictus.motivationalquotes.R
+import com.invictus.motivationalquotes.data.QuotesList
 import com.invictus.motivationalquotes.ui.main.MainActivity
+import kotlin.random.Random
 
 class AlarmReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
@@ -21,8 +23,11 @@ class AlarmReceiver: BroadcastReceiver() {
             applicationContext = context,
             channelId = context.getString(R.string.reminders_notification_channel_id)
         )
-        // Remove this line if you don't want to reschedule the reminder
-        ReminderManager.startReminder(context.applicationContext)
+
+        val reminderId = intent?.getIntExtra("reminderId",149) ?:149
+        val reminderTime = intent?.getStringExtra("reminderTime") ?: "22:00"
+
+        ReminderManager.startReminder(context.applicationContext,reminderTime,reminderId)
     }
 }
 
@@ -37,10 +42,14 @@ fun NotificationManager.sendReminderNotification(
         contentIntent,
         PendingIntent.FLAG_UPDATE_CURRENT
     )
+
+    val quoteList = QuotesList.getQuotesList()
+    val quote = if(quoteList.isNotEmpty()) quoteList[Random.nextInt(quoteList.size-1)] else ""
+
     val builder = NotificationCompat.Builder(applicationContext, channelId)
-        .setContentTitle(applicationContext.getString(R.string.app_name))
-        .setContentText(applicationContext.getString(R.string.app_name))
-        .setSmallIcon(R.drawable.feedback_icon)
+        .setContentTitle(applicationContext.getString(R.string.motivation))
+        .setContentText(quote)
+        .setSmallIcon(R.mipmap.app_image2)
 //        .setStyle(
 //            NotificationCompat.BigTextStyle()
 //                .bigText(applicationContext.getString(R.string.description_notification_reminder))

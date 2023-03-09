@@ -11,19 +11,22 @@ object ReminderManager {
     const val REMINDER_NOTIFICATION_REQUEST_CODE = 123
     fun startReminder(
         context: Context,
-        reminderTime: String = "22:57",
+        reminderTime: String = "22:00",
         reminderId: Int = REMINDER_NOTIFICATION_REQUEST_CODE
     ) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         val (hours, min) = reminderTime.split(":").map { it.toInt() }
         val intent =
-            Intent(context.applicationContext, AlarmReceiver::class.java).let { intent ->
+            Intent(context.applicationContext, AlarmReceiver::class.java)
+                .putExtra("reminderId",reminderId)
+                .putExtra("reminderTime",reminderTime)
+                .let { intent ->
                 PendingIntent.getBroadcast(
                     context.applicationContext,
                     reminderId,
                     intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
                 )
             }
 

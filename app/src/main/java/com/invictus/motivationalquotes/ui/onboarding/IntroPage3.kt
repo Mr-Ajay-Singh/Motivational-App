@@ -13,8 +13,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.invictus.common.utils.UnitConverter.DP
-import com.invictus.motivationalquotes.ui.main.MainScreenIdentifier
 import com.invictus.motivationalquotes.R
+import com.invictus.motivationalquotes.data.SelectedTopics
+import com.invictus.motivationalquotes.db.MotivationSharedPreferences
+import com.invictus.motivationalquotes.ui.main.MainScreenIdentifier
 
 @Composable
 fun IntroPage3(selectedPage: MutableState<MainScreenIdentifier>) {
@@ -22,12 +24,12 @@ fun IntroPage3(selectedPage: MutableState<MainScreenIdentifier>) {
     if (selectedPage.value != MainScreenIdentifier.INTRO_PAGE3) return
 
     val optionsList = arrayListOf(
-        "Faith & Spirtuality",
-        "Happiness",
-        "Stress & Anxiety",
-        "Achieving goals",
-        "Self-esteem",
-        "Relationships"
+        SelectedTopics.STAY_STRONG,
+        SelectedTopics.CONFIDENCE,
+        SelectedTopics.FOCUS,
+        SelectedTopics.BREAKUP,
+        SelectedTopics.FRIENDSHIP,
+        SelectedTopics.LIFE,
     )
 
     val selectedIndex = arrayListOf<String>()
@@ -67,11 +69,27 @@ fun IntroPage3(selectedPage: MutableState<MainScreenIdentifier>) {
                 item {
                     Row(
                         horizontalArrangement = Arrangement.SpaceEvenly,
-                        modifier = Modifier.padding(11.DP,0.DP)
+                        modifier = Modifier
+                            .padding(11.DP, 0.DP)
                             .fillMaxWidth()
-                    ){
-                        SelectionButtonComponent(it[0],selectedIndex.contains(it[0])){selectedIndex.add(it)}
-                        SelectionButtonComponent(it[1],selectedIndex.contains(it[1])){selectedIndex.add(it)}
+                    ) {
+                        SelectionButtonComponent(it[0].value) {
+                            if (selectedIndex.contains(it)) {
+                                selectedIndex.remove(it)
+                            } else {
+                                selectedIndex.add(it)
+                            }
+                        }
+
+                        SelectionButtonComponent(
+                            it[1].value,
+                        ) {
+                            if (selectedIndex.contains(it)) {
+                                selectedIndex.remove(it)
+                            } else {
+                                selectedIndex.add(it)
+                            }
+                        }
                     }
                     Spacer(modifier = Modifier.height(15.DP))
                 }
@@ -85,7 +103,12 @@ fun IntroPage3(selectedPage: MutableState<MainScreenIdentifier>) {
                 .background(color = colorResource(id = R.color.backgroundColor))
                 .padding(16.DP)
                 .align(alignment = Alignment.BottomCenter)
-                .clickable { selectedPage.value = MainScreenIdentifier.HOME_PAGE }
+                .clickable {
+                    if (selectedIndex.size > 0) MotivationSharedPreferences.SELECTED_TOPICS =
+                        selectedIndex.joinToString("#")
+                    selectedPage.value = MainScreenIdentifier.HOME_PAGE
+                    MotivationSharedPreferences.FIRST_TIME_USER = false
+                }
 
         ) {
             ButtonComponent(text = stringResource(id = R.string.continue_text))

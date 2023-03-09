@@ -9,12 +9,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.invictus.common.utils.UnitConverter.DP
@@ -76,13 +77,19 @@ fun ButtonComponent(text: String) {
 }
 
 @Composable
-fun SelectionButtonComponent(text: String, isSelected: Boolean,callback: (String) -> Unit) {
+fun SelectionButtonComponent(text: String, callback: (String) -> Unit) {
+
+    val isSelected = remember{ mutableStateOf(false) }
+
     Box(
         modifier = Modifier
             .width(186.DP)
-            .clickable { callback(text) }
+            .clickable {
+                isSelected.value = !isSelected.value
+                callback(text)
+            }
             .background(
-                color = if (isSelected) colorResource(id = R.color.primaryColor) else Color.Transparent,
+                color = if (isSelected.value) colorResource(id = R.color.primaryColor) else Color.Transparent,
                 shape = RoundedCornerShape(10.DP)
             )
             .border(
@@ -99,7 +106,7 @@ fun SelectionButtonComponent(text: String, isSelected: Boolean,callback: (String
                 fontWeight = FontWeight.Normal,
                 fontSize = 16.SP
             ),
-            color = if (isSelected) Color.White else colorResource(id = R.color.primaryColor),
+            color = if (isSelected.value) Color.White else colorResource(id = R.color.primaryColor),
             modifier = Modifier.fillMaxWidth()
         )
     }
