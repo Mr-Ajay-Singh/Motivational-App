@@ -40,14 +40,14 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun makeNotification() {
-//        val timeList = arrayListOf("08:00","10:45","12:15","14:10","16:15","17:30","18:30","19:45","20:51","21:15","22:00",)
+        val timeList = arrayListOf("08:00","10:45","12:15","14:10","16:15","17:30","18:30","19:45","20:51","21:15","22:00",)
 //
-//        var requestNumber = ReminderManager.REMINDER_NOTIFICATION_REQUEST_CODE
-//        timeList.forEach{
-//            ReminderManager.startReminder(this,it,requestNumber++)
-//        }
+        var requestNumber = ReminderManager.REMINDER_NOTIFICATION_REQUEST_CODE
+        timeList.forEach{
+            ReminderManager.startReminder(this,it,requestNumber++)
+        }
 
-            ReminderManager.startReminder(this)
+//            ReminderManager.startReminder(this)
     }
 }
 

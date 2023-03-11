@@ -34,6 +34,14 @@ object ReminderManager {
             set(Calendar.HOUR_OF_DAY, hours)
             set(Calendar.MINUTE, min)
         }
+        val now = Calendar.getInstance()
+
+        if (now.after(calendar)) {
+            calendar.add(Calendar.DATE, 1);
+        }
+
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, intent)
+
         alarmManager.setAlarmClock(
             AlarmManager.AlarmClockInfo(calendar.timeInMillis, intent),
             intent
