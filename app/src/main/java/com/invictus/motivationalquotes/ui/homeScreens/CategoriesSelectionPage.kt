@@ -1,5 +1,6 @@
 package com.invictus.motivationalquotes.ui.homeScreens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -35,6 +36,10 @@ fun CategoriesSelectionPage(selectedPage: MutableState<MainScreenIdentifier>) {
     val categorySelection = SelectedTopicsList.getList()
     val selectionList = remember {
         SelectedTopicsList.getSelectedList().toMutableList()
+    }
+
+    BackHandler {
+        selectedPage.value = MainScreenIdentifier.HOME_PAGE
     }
 
     Box(

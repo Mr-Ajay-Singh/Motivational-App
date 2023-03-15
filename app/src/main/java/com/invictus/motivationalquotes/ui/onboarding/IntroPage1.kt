@@ -24,8 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.invictus.common.utils.UnitConverter.DP
 import com.invictus.common.utils.UnitConverter.SP
-import com.invictus.motivationalquotes.ui.main.MainScreenIdentifier
 import com.invictus.motivationalquotes.R
+import com.invictus.motivationalquotes.ui.main.MainScreenIdentifier
 
 @Composable
 fun IntroPage1(selectedPage: MutableState<MainScreenIdentifier>) {

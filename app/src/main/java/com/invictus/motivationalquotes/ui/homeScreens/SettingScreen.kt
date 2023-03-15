@@ -2,6 +2,7 @@ package com.invictus.motivationalquotes.ui.homeScreens
 
 import android.content.Intent
 import android.net.Uri
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -46,6 +47,10 @@ fun SettingScreen(selectedPage: MutableState<MainScreenIdentifier>) {
 //            Pair(R.drawable.share_icon, context.getString(R.string.share_out_app)),
 //            Pair(R.drawable.feedback_icon, context.getString(R.string.feedback)),
         )
+    }
+
+    BackHandler {
+        selectedPage.value = MainScreenIdentifier.HOME_PAGE
     }
 
     Box(
