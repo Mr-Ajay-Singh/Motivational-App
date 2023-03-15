@@ -82,21 +82,13 @@ dependencies {
 
     def splitties_version = "3.0.0"
     api "com.louiscad.splitties:splitties-toast:$splitties_version"
-//    api "com.louiscad.splitties:splitties-views:$splitties_version"
+    api "com.louiscad.splitties:splitties-views:$splitties_version"
     api "com.louiscad.splitties:splitties-activities:$splitties_version"
-//    api "com.louiscad.splitties:splitties-fragments:$splitties_version"
-//    api "com.louiscad.splitties:splitties-fragmentargs:$splitties_version"
-//    api "com.louiscad.splitties:splitties-alertdialog-appcompat:$splitties_version"
-    api "com.louiscad.splitties:splitties-exceptions:$splitties_version"
-//    api "com.louiscad.splitties:splitties-alertdialog-appcompat-coroutines:$splitties_version"
     api "com.louiscad.splitties:splitties-resources:$splitties_version"
-//    api "com.louiscad.splitties:splitties-views-dsl:$splitties_version"
-//    api "com.louiscad.splitties:splitties-bundle:$splitties_version"
-    api "com.louiscad.splitties:splitties-systemservices:$splitties_version"
-    api "com.louiscad.splitties:splitties-lifecycle-coroutines:$splitties_version"
-    api "com.louiscad.splitties:splitties-permissions:$splitties_version"
-    api "com.louiscad.splitties:splitties-snackbar:$splitties_version"
+    api "com.louiscad.splitties:splitties-bundle:$splitties_version"
     api "com.louiscad.splitties:splitties-intents:$splitties_version"
+    api "com.louiscad.splitties:splitties-systemservices:$splitties_version"
+    api "com.louiscad.splitties:splitties-appctx:$splitties_version"
 
     api 'joda-time:joda-time:2.10.6'
 
