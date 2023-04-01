@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -21,7 +22,7 @@ import com.invictus.motivationalquotes.db.MotivationSharedPreferences
 import com.invictus.motivationalquotes.ui.homeScreens.CategoriesSelectionPage
 import com.invictus.motivationalquotes.ui.homeScreens.HomeScreen
 import com.invictus.motivationalquotes.ui.homeScreens.SelectWallpaperPage
-import com.invictus.motivationalquotes.ui.homeScreens.SettingScreen
+import com.invictus.motivationalquotes.ui.settingScreens.SettingScreen
 import com.invictus.motivationalquotes.ui.onboarding.IntroPage1
 import com.invictus.motivationalquotes.ui.onboarding.IntroPage2
 import com.invictus.motivationalquotes.ui.onboarding.IntroPage3
@@ -40,13 +41,14 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun makeNotification() {
+        if(MotivationSharedPreferences.ALARM_SET_STATUS)return
         val timeList = arrayListOf("08:00","10:45","12:15","14:10","16:15","17:30","18:30","19:45","20:51","21:15","22:00",)
 //
         var requestNumber = ReminderManager.REMINDER_NOTIFICATION_REQUEST_CODE
         timeList.forEach{
             ReminderManager.startReminder(this,it,requestNumber++)
         }
-
+        MotivationSharedPreferences.ALARM_SET_STATUS = true
 //            ReminderManager.startReminder(this)
     }
 }
@@ -61,13 +63,27 @@ fun HomePage() {
         modifier = Modifier.fillMaxSize(),
         color = colorResource(id = R.color.backgroundColor)
     ) {
-        IntroPage1(selectedPage)
-        IntroPage2(selectedPage)
-        IntroPage3(selectedPage)
-        HomeScreen(selectedPage)
-        SelectWallpaperPage(selectedPage)
-        CategoriesSelectionPage(selectedPage)
-        SettingScreen(selectedPage)
+        Crossfade(targetState = selectedPage.value == MainScreenIdentifier.INTRO_PAGE1) {
+            if(it)IntroPage1(selectedPage)
+        }
+        Crossfade(targetState = selectedPage.value == MainScreenIdentifier.INTRO_PAGE2) {
+            if(it)IntroPage2(selectedPage)
+        }
+        Crossfade(targetState = selectedPage.value == MainScreenIdentifier.INTRO_PAGE3) {
+            if(it)IntroPage3(selectedPage)
+        }
+        Crossfade(targetState = selectedPage.value == MainScreenIdentifier.HOME_PAGE) {
+            if(it)HomeScreen(selectedPage)
+        }
+        Crossfade(targetState = selectedPage.value == MainScreenIdentifier.WALLPAPER) {
+            if(it)SelectWallpaperPage(selectedPage)
+        }
+        Crossfade(targetState = selectedPage.value == MainScreenIdentifier.CATEGORIES) {
+            if(it)CategoriesSelectionPage(selectedPage)
+        }
+        Crossfade(targetState = selectedPage.value == MainScreenIdentifier.SETTING) {
+            if(it) SettingScreen(selectedPage)
+        }
     }
 
 }
@@ -78,7 +94,7 @@ private fun createNotificationsChannels(context: Context) {
         val channel = NotificationChannel(
             context.getString(R.string.reminders_notification_channel_id),
             context.getString(R.string.reminders_notification_channel_name),
-            NotificationManager.IMPORTANCE_DEFAULT
+            NotificationManager.IMPORTANCE_HIGH
         )
         ContextCompat.getSystemService(context, NotificationManager::class.java)
             ?.createNotificationChannel(channel)

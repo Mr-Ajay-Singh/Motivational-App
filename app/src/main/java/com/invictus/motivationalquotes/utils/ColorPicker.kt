@@ -38,6 +38,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.invictus.common.ui.theme.typography
@@ -156,3 +157,4 @@ public val Icons.Filled.FiberManualRecord: ImageVector
     }
 
 private var _fiberManualRecord: ImageVector? = null
+

@@ -37,7 +37,7 @@ fun Pager(
     modifier: Modifier = Modifier,
     state: PagerState,
     orientation: Orientation = Orientation.Horizontal,
-    offscreenLimit: Int = 2,
+    offscreenLimit: Int = 1,
     content: @Composable PagerScope.() -> Unit
 ) {
     var pageSize by remember { mutableStateOf(0) }
@@ -58,11 +58,11 @@ fun Pager(
                 coroutineScope.launch {
                     // Velocity is in pixels per second, but we deal in percentage offsets, so we
                     // need to scale the velocity to match
-                    state.fling(velocity / pageSize)
+                    state.fling((velocity/2) / pageSize)
                 }
             },
             state = rememberDraggableState { deltaInPx ->
-                coroutineScope.calculateNewPosition(deltaInPx, state, pageSize, offscreenLimit)
+                coroutineScope.calculateNewPosition(deltaInPx * 4, state, pageSize, offscreenLimit)
             },
         )
     ) { measurables, constraints ->

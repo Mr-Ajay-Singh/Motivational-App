@@ -24,7 +24,6 @@ import com.invictus.motivationalquotes.ui.onboarding.TitleBackComponent
 
 @Composable
 fun SelectWallpaperPage(selectedPage: MutableState<MainScreenIdentifier>) {
-    if (selectedPage.value != MainScreenIdentifier.WALLPAPER) return
 
     val imageList = ImageList.imageList()
 

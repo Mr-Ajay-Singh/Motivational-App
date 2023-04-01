@@ -30,9 +30,6 @@ import com.invictus.motivationalquotes.ui.onboarding.TitleBackComponent
 @Composable
 fun CategoriesSelectionPage(selectedPage: MutableState<MainScreenIdentifier>) {
 
-    if (selectedPage.value != MainScreenIdentifier.CATEGORIES) return
-
-
     val categorySelection = SelectedTopicsList.getList()
     val selectionList = remember {
         SelectedTopicsList.getSelectedList().toMutableList()

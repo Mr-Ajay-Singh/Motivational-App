@@ -21,8 +21,6 @@ import com.invictus.motivationalquotes.ui.main.MainScreenIdentifier
 @Composable
 fun IntroPage3(selectedPage: MutableState<MainScreenIdentifier>) {
 
-    if (selectedPage.value != MainScreenIdentifier.INTRO_PAGE3) return
-
     val optionsList = arrayListOf(
         SelectedTopics.STAY_STRONG,
         SelectedTopics.CONFIDENCE,

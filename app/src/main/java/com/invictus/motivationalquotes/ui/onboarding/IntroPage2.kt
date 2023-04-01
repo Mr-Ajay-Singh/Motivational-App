@@ -19,8 +19,6 @@ import com.invictus.motivationalquotes.ui.main.MainScreenIdentifier
 @Composable
 fun IntroPage2(selectedPage: MutableState<MainScreenIdentifier>) {
 
-    if(selectedPage.value != MainScreenIdentifier.INTRO_PAGE2) return
-
     Box(
         modifier = Modifier.fillMaxSize()
     ){

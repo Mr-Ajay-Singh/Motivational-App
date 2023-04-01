@@ -30,8 +30,6 @@ import com.invictus.motivationalquotes.ui.main.MainScreenIdentifier
 @Composable
 fun IntroPage1(selectedPage: MutableState<MainScreenIdentifier>) {
 
-    if(selectedPage.value != MainScreenIdentifier.INTRO_PAGE1) return
-
     val noOfTimes = remember { mutableStateOf(10) }
     val startTime = remember { mutableStateOf(10) }
     val endTime = remember { mutableStateOf(10) }

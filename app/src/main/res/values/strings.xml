@@ -26,4 +26,10 @@
     <string name="intro_desc">Welcome to our motivational quote app! Get inspired every day with our collection of personalized quotes that you can customize and share with others.</string>
     <string name="intro_title">Daily Motivation Made Simple.</string>
     <string name="motivation">Motivation</string>
+    <string name="select_font">Select Font</string>
+    <string name="choose_text_color">Choose Text Color</string>
+    <string name="downloading_image">Downloading Image...</string>
+    <string name="wallpaper_set_successfully">Wallpaper Set Successfully</string>
+    <string name="permission_denied">Permission Denied</string>
+    <string name="try_to_download_again">Try To Download Again..</string>
 </resources>

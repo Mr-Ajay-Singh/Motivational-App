@@ -11,8 +11,8 @@ android {
         applicationId "com.invictus.motivationalquotes"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 101
+        versionName "1.01"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -50,4 +50,5 @@ dependencies {
 
     implementation project(":common")
     implementation "dev.shreyaspatil:capturable:1.0.3"
+    implementation "com.github.skydoves:colorpicker-compose:1.0.1"
 }
